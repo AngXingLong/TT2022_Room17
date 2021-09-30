@@ -1,8 +1,12 @@
 import React from 'react';
-import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
-import { Card, Col, Row, Button } from 'antd';
-import { useDispatch} from 'react-redux';
-import {ProductCard} from './form/Card';
+import { PlusOutlined, MinusOutlined, DownOutlined } from '@ant-design/icons';
+import { Card, Col, Row, Button, Dropdown, Menu } from 'antd';
+import { useDispatch } from 'react-redux';
+import { ProductCard } from './form/Card';
+import axios from 'axios';
+
+
+
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -189,38 +193,123 @@ class Home extends React.Component {
                     "qty": 50
                 }
             ],
-            selectedProducts:[]
+            categories: [
+                {
+                    "id": 1,
+                    "name": "Electronics",
+                    "description": "We have products ranging from computers & computer accessories to audio systems that will revolutionalize your leisure.",
+                    "image": "https://images.unsplash.com/photo-1498049794561-7780e7231661?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
+                },
+                {
+                    "id": 2,
+                    "name": "Jewelery",
+                    "description": "We are changing how you shop for fine gold and gems jewellery",
+                    "image": "https://images.unsplash.com/photo-1512163143273-bde0e3cc7407?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
+                },
+                {
+                    "id": 3,
+                    "name": "Men's clothing",
+                    "description": "Men's Apparel From Top Brands",
+                    "image": "https://images.unsplash.com/photo-1516257984-b1b4d707412e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80"
+                },
+                {
+                    "id": 4,
+                    "name": "Women's clothing",
+                    "description": "Women's Apparel From Top Brands",
+                    "image": "https://images.unsplash.com/photo-1551048632-24e444b48a3e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80"
+                }
+            ],
+            selectedProducts: [],
+            apiProducts: []
         };
-    } 
+    }
 
-
+    componentDidMount = () => {
+        axios(`http://localhost:5000/product`, {
+            method: "get",
+            // data: params,
+            crossDomain: true,
+            withCredentials: true
+        }).then(response => {
+            //axios.post(`${baseUrl}/login`, params).then(response => {
+            this.setState({ apiProducts: response.data })
+            //   if (typeof response.data !== 'string'){
+            //       dispatch({type:"setUserLogin", data: response.data});
+            //       localStorage.setItem('user', JSON.stringify(response.data));
+            //   }
+            //   else{
+            // Modal.error({
+            //   title: 'Error',
+            //   content: (
+            //     <div>
+            //       <p>Username or password is invalid </p>
+            //     </div>
+            //   ),
+            //   onOk() {},
+            // });
+            //   }
+        });
+    }
     getNumberofProductCard = () => {
         let arrayOfProducts = [];
         const { Meta } = Card;
 
         {
-            this.state.products.forEach(el => {
+            this.state.apiProducts.forEach(el => {
                 arrayOfProducts.push(
                     <Col span={6}>
-                      
-                        <ProductCard imageSource={el.image} ProductTitle={el.title} ProductPrice={el.price}/>
+                        <ProductCard imageSource={el.image} ProductTitle={el.title} ProductPrice={el.price} />
                     </Col>)
-                }
+            }
             )
         }
         return arrayOfProducts
 
     }
 
-    render() {
-        console.log(this.state);
+    getCategoryFilter = () => {
+        let arrayOfCategories = [];
+        this.state.categories.forEach(el => {
+            arrayOfCategories.push(
+                <Menu.Item key={el.id} >
+                    {el.name}
+              </Menu.Item> 
+            )
+        })
 
+        return arrayOfCategories
+    }
+
+    render() {
+        function handleButtonClick(e) {
+            // message.info('Click on left button.');
+            console.log('click left button', e);
+          }
+          
+          function handleMenuClick(e) {
+            // message.info('Click on menu item.');
+            console.log('click', e);
+          }
+        console.log(this.state);
+        const menu = (
+            <Menu onClick={handleMenuClick}>
+              {this.getCategoryFilter()}
+            </Menu>
+          );
         return (
-            <Card title="Products" >
-                <Row gutter={16}>
-                    {this.getNumberofProductCard()}
-                </Row>
-            </Card>
+            <div>
+                <Dropdown overlay={menu}>
+                    <Button>
+                        Filter <DownOutlined />
+                    </Button>
+                </Dropdown>
+                <Card title="Products" >
+                    <Row gutter={16}>
+                        {this.getNumberofProductCard()}
+                    </Row>
+                </Card>
+            </div>
+
         );
     }
 }

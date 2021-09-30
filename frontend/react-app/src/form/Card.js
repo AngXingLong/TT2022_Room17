@@ -37,7 +37,7 @@ export const ProductCard =({imageSource,ProductTitle,ProductPrice}) => {
           </Button>
         </Row>
         <Row>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" >
             Add To Cart
         </Button>
         </Row>

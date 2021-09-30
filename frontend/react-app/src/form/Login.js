@@ -23,7 +23,6 @@ function Login(){
           crossDomain: true,
           withCredentials: true
         }).then(response => {
-        //axios.post(`${baseUrl}/login`, params).then(response => {
           
             if (typeof response.data !== 'string'){
                 dispatch({type:"setUserLogin", data: response.data});
