@@ -20,7 +20,7 @@ public class Category {
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             fetch = FetchType.LAZY
     )
-    @JsonManagedReference
+    @JsonManagedReference(value="category")
     private List<Product> product = new ArrayList<>();
 
     public Long getId() {

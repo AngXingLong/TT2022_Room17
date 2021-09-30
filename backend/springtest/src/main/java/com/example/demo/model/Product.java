@@ -25,12 +25,12 @@ public class Product {
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             fetch = FetchType.LAZY
     )
-    @JsonManagedReference
+    @JsonManagedReference(value="product")
     private List<OrdersItem> ordersItem = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = true)
-    @JsonBackReference
+    @JsonBackReference(value="category")
     private Category category;
 
     public Long getId() {

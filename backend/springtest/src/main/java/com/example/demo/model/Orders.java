@@ -16,11 +16,10 @@ public class Orders {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)
-    @JsonBackReference
+    @JsonBackReference(value="user")
     private User user;
     private String status;
     private String createdAt;
-
 
     @OneToMany(
             mappedBy = "orders",
@@ -28,7 +27,7 @@ public class Orders {
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             fetch = FetchType.LAZY
     )
-    @JsonManagedReference
+    @JsonManagedReference(value="orders")
     private List<OrdersItem> ordersItem = new ArrayList<>();
 
     public Long getId() {
