@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {PlusOutlined,MinusOutlined } from '@ant-design/icons';
 import { Card, Col, Row } from 'antd';
 
 class Home extends React.Component {
@@ -200,13 +200,39 @@ class Home extends React.Component {
             this.state.products.forEach(el => {
                 arrayOfProducts.push(
                     <Col span={6}>
-                        <Card
+                        {/* <Card
                             hoverable
-                            style={{ width: 240 }}
-                            cover={<img alt="example" src={el.image} />}
+                            style={{ width: 240}}
+                            cover={<img alt="example" src={el.image} 
+                            actions={[
+                                <PlusOutlined key="setting" />,
+                                <MinusOutlined key="edit" />,
+                                <ShoppingCartOutlined key="ellipsis" />,
+                              ]}
+                              />}
                         >
-                            <Meta title={el.title} description={el.description} />
-                        </Card>
+                            <Meta title={el.title} />
+                          
+                        </Card> */}
+                        <Card
+    style={{ width: 300 }}
+    cover={
+      <img
+        alt="example"
+        src={el.image}
+      />
+    }
+    actions={[
+        <PlusOutlined key="setting" />,
+        <MinusOutlined key="edit" />,
+        <div>1</div>
+    ]}
+  >
+    <Meta
+      title={el.title}
+    
+    />
+  </Card>
                     </Col>)
             }
 
