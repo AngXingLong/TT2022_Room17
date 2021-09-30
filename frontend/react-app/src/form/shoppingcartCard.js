@@ -40,6 +40,9 @@ export const ShoppingCard =({imageSource,ProductTitle,ProductPrice,ProductQty}) 
           <Button onClick={removeCountHandler} htmlType="submit">
               -
           </Button>
-        </Col>  
+        </Col> 
+        <Col span={4}>
+         <header>Price:$ {count * ProductPrice}</header>
+        </Col>   
     </Row>);
 };

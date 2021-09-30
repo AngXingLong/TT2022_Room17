@@ -212,11 +212,15 @@ class ShoppingCart extends React.Component {
         console.log(this.state);
 
         return (
+            <Row>
             <Card title="Shopping Cart" >
                 
                     {this.getNumberofProductCard()}
-                
+                    
             </Card>
+            <div style={{float: 'right'}}><Button>Check Out</Button></div>
+            
+            </Row>
         );
     }
 }
