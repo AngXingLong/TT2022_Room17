@@ -38,7 +38,9 @@ public class UserService {
     }
 
     @Transactional
-    public User getById(Long id) { return userRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(id)); }
+    public User getById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(id));
+    }
 
     @Transactional
     public void updateById(Long Id, User user) {

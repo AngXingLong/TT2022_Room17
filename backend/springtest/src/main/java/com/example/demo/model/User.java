@@ -3,6 +3,8 @@ package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class User {
@@ -14,17 +16,13 @@ public class User {
     @Column(unique=true)
     private String username;
     private String password;
+    private String firstName;
+    private String lastName;
+    private int postalCode;
+    private String gender;
+    private LocalDate createdAt;
     private boolean active;
     private String roles;
-
-    @OneToOne(
-            mappedBy = "user",
-            orphanRemoval = true,
-            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
-            fetch = FetchType.LAZY
-    )
-    @JsonManagedReference
-    private Cart cart;
 
     public Long getId() {
         return id;
@@ -66,11 +64,5 @@ public class User {
         this.roles = roles;
     }
 
-    public Cart getCart() {
-        return cart;
-    }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
 }
