@@ -27,7 +27,7 @@ public class User {
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             fetch = FetchType.LAZY
     )
-    @JsonManagedReference
+    @JsonManagedReference(value="user")
     private List<Orders> orders = new ArrayList<>();
 
     public Long getId() {
