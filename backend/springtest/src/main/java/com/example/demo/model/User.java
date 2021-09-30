@@ -14,6 +14,10 @@ public class User {
     private Long id;
     private String username;
     private String password;
+    private String first_name;
+    private String last_name;
+    private String gender;
+    private String created_at;
     private boolean active;
     private String roles;
 
