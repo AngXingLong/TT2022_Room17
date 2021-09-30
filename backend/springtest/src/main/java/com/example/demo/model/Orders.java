@@ -16,4 +16,7 @@ public class Orders {
     @JsonBackReference
     private User user;
 
+    private String Status;
+    private String created_at;
+
 }
