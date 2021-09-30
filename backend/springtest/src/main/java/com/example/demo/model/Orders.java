@@ -4,9 +4,16 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
-public class Order {
+@Entity
+public class Orders {
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = true)
+    @JsonBackReference
+    private User user;
 
 }

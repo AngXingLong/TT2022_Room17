@@ -1,6 +1,4 @@
 package com.example.demo.model;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -12,12 +10,14 @@ public class Category {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    String name;
-    String description;
-    @Column(columnDefinition = "TEXT")
-    String image;
 
-
-
+    @OneToMany(
+            mappedBy = "category",
+            orphanRemoval = true,
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            fetch = FetchType.LAZY
+    )
+    @JsonManagedReference
+    private List<Product> product = new ArrayList<>();
 
 }

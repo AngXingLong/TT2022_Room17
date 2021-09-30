@@ -3,8 +3,8 @@ package com.example.demo.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -12,17 +12,19 @@ public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-
-    @Column(unique=true)
     private String username;
     private String password;
-    private String firstName;
-    private String lastName;
-    private int postalCode;
-    private String gender;
-    private LocalDate createdAt;
     private boolean active;
     private String roles;
+
+    @OneToMany(
+            mappedBy = "user",
+            orphanRemoval = true,
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            fetch = FetchType.LAZY
+    )
+    @JsonManagedReference
+    private List<Orders> orders = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -63,6 +65,4 @@ public class User {
     public void setRoles(String roles) {
         this.roles = roles;
     }
-
-
 }
