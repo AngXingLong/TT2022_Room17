@@ -1,0 +1,55 @@
+// TODO
+Understand models (POPUP)
+Understand how to create complex tables
+Understand how to create complex nav
+
+
+npm run server // Start json server
+npm start // Start React
+
+npm install axios
+npm install -g json-server
+npm install --save react-router // in package.json -> scripts add "server": "json-server --watch db.json --port 5000"
+npm install react-bootstrap@next bootstrap@5.1.0
+npm install antd
+npm install @ant-design/charts
+npm install --save react-apexcharts apexcharts
+ 
+
+// To change theme see https://medium.com/@aksteps/customising-ant-design-antd-theme-without-using-react-eject-or-any-unreliable-libraries-782c53cbc03b
+lessc ./src/styles/main.less ./src/styles/css/antd.css --js 
+
+
+
+
+
+
+React Redux
+
+// ACTION
+const increment = () => {
+  return {
+      type: 'INCREMENT'
+  }
+}
+
+const decrement = () => {
+  return {
+      type: 'DECREMENT'
+  }
+}
+//REDUCER
+const counter = (state = 0, action) => {
+    switch(action.type){
+        case 'INCREMENT':
+          return state + 1;
+        case 'DECREMENT':
+          return state - 1;
+    }
+
+};
+
+
+let store = createStore(counter)
+
+store.dispatch(increment());

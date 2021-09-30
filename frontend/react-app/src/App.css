@@ -1,0 +1,24 @@
+nav {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+nav a{
+  color:black;
+  text-decoration: none;
+
+}
+
+nav a:hover{
+  color:grey;
+  text-decoration: none;
+}
+
+
+.wrapper{
+  padding:30px;
+}
+
+.table-striped-rows th{
+  background-color: red;
+  color:#fff;
+}
