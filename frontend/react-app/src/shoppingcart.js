@@ -1,9 +1,8 @@
 import React from 'react';
-import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
-import { Card, Col, Row, Button } from 'antd';
-import { useDispatch} from 'react-redux';
-import {ProductCard} from './form/Card';
-class Home extends React.Component {
+
+import { Card, Col, Row,Button } from 'antd';
+import {ShoppingCard} from './form/shoppingcartCard';
+class ShoppingCart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -188,24 +187,21 @@ class Home extends React.Component {
                     "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
                     "qty": 50
                 }
-            ],
-            selectedProducts:[]
+            ]
         };
-    } 
-
+    }
+    
 
     getNumberofProductCard = () => {
         let arrayOfProducts = [];
         const { Meta } = Card;
-
         {
             this.state.products.forEach(el => {
                 arrayOfProducts.push(
-                    <Col span={6}>
-                      
-                        <ProductCard imageSource={el.image} ProductTitle={el.title} ProductPrice={el.price}/>
-                    </Col>)
-                }
+                   <ShoppingCard imageSource={el.image} ProductTitle={el.title} ProductPrice={el.price} ProductQty={el.qty}/>
+                   )
+            }
+
             )
         }
         return arrayOfProducts
@@ -216,13 +212,13 @@ class Home extends React.Component {
         console.log(this.state);
 
         return (
-            <Card title="Products" >
-                <Row gutter={16}>
+            <Card title="Shopping Cart" >
+                
                     {this.getNumberofProductCard()}
-                </Row>
+                
             </Card>
         );
     }
 }
 
-export default Home;
+export default ShoppingCart;

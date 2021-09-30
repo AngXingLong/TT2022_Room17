@@ -25,6 +25,7 @@ import Login from './form/Login';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import HomePage from './homepage';
+import ShoppingCart from './shoppingcart';
 import { baseUrl } from './const';
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link><Link to="/">Products</Link></Nav.Link>
+            <Nav.Link><Link to="/checkout">Checkout</Link></Nav.Link>
             {/* <Nav.Link><Link to="/table">Table</Link></Nav.Link>
             <Nav.Link><Link to="/register">Forms</Link></Nav.Link>
             <NavDropdown title="Ant Charts" id="basic-nav-dropdown">
@@ -73,11 +75,13 @@ function App() {
             </NavDropdown>
             <Nav.Link><Link to="/ProtectedRouteTest">Protected Route</Link></Nav.Link> */}
           </Nav>
-          <Badge count={5} showZero>
-            <Avatar shape="square" size="large" icon={<ShoppingCartOutlined/>}/>
-          </Badge>
 
-         
+          <Link to="/checkout">
+            <Badge count={5} showZero >
+              <Avatar shape="square" size="large" icon={<ShoppingCartOutlined />} />
+            </Badge>
+            </Link>
+
           {user.isAuth ? (
             <Dropdown>
               <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -88,7 +92,7 @@ function App() {
               </Dropdown.Menu>
             </Dropdown>
           ) : (
-            <Link to="/Login"><Button variant="outline-success">Login</Button></Link>
+            <Link to="/Login"><Button variant="outline-success" >Login</Button></Link>
           )}
 
         </Navbar.Collapse>
@@ -98,6 +102,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <HomePage />
+          </Route>
+          <Route path="/checkout">
+            <ShoppingCart />
           </Route>
           <Route path="/register">
             <AntForm />

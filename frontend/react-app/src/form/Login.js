@@ -25,8 +25,6 @@ function Login(){
         }).then(response => {
         //axios.post(`${baseUrl}/login`, params).then(response => {
           
-        
-            
             if (typeof response.data !== 'string'){
                 dispatch({type:"setUserLogin", data: response.data});
                 localStorage.setItem('user', JSON.stringify(response.data));
