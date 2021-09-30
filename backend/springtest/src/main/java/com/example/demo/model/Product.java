@@ -15,6 +15,7 @@ public class Product {
     private Long id;
     private String title;
     private double price;
+    @Column(columnDefinition = "TEXT")
     private String description;
     private String image;
     private String qty;
