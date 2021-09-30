@@ -12,5 +12,7 @@ import java.util.List;
 @Repository
 public interface OrdersRepository extends CrudRepository<Orders, Long> {
 
-
+    @Query("select o from Orders as o inner join o.user as u " +
+            "where (:userId is null or u.id = :userId)")
+    List<Orders> getAllOrders(Long userId);
 }

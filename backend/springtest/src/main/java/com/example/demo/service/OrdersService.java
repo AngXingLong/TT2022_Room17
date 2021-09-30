@@ -24,8 +24,8 @@ public class OrdersService {
     public Orders getById(Long id) { return ordersRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(id)); }
 
     @Transactional
-    public List<Orders> getAll() {
-        return (List<Orders>) ordersRepository.findAll();
+    public List<Orders> getAll(Long userId) {
+        return ordersRepository.getAllOrders(userId);
     }
 
 

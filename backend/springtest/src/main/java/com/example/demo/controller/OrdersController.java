@@ -26,8 +26,8 @@ public class OrdersController {
     }
 
     @GetMapping
-    public List<Orders> getAllOrders(@RequestParam(required = false) String userId) {
-        return ordersService.getAll();
+    public List<Orders> getAllOrders(@RequestParam(required = false) Long userId) {
+        return ordersService.getAll(userId);
     }
 
     @GetMapping("/{ordersId}")
