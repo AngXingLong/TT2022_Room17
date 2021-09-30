@@ -15,6 +15,7 @@ public class Product {
     private Long id;
     private String title;
     private double price;
+    @Column(columnDefinition = "TEXT")
     private String description;
     private String image;
     private String qty;
@@ -89,11 +90,10 @@ public class Product {
         this.qty = qty;
     }
 
-    public List<OrdersItem> getOrdersItem() {
-        return ordersItem;
-    }
 
     public void setOrdersItem(List<OrdersItem> ordersItem) {
         this.ordersItem = ordersItem;
     }
+
+
 }

@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Product;
-import com.example.demo.model.Student;
 import com.example.demo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,6 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
-
 
     @PostMapping
     public void insertProduct(@RequestBody Product product) {
@@ -41,6 +39,5 @@ public class ProductController {
     public void updateProduct(@PathVariable Long productId, @RequestBody Product product) {
         productService.updateById(productId, product);
     }
-
 
 }

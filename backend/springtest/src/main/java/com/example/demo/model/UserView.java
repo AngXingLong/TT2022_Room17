@@ -5,4 +5,10 @@ public interface UserView {
     public String getUsername();
     public boolean isActive();
     public String getRoles();
+
+    public String getFirstName();
+    public String getLastName();
+    public int getPortalCode();
+    public String getGender();
+
 }
