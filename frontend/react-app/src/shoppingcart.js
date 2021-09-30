@@ -208,9 +208,26 @@ class ShoppingCart extends React.Component {
 
     }
 
+    getTotalPrice = () => {
+        let totalPrice = 0;
+        let sum = 0;
+       
+        {
+            this.state.products.forEach(el => {
+                sum = el.price*el.qty
+                totalPrice = totalPrice+sum
+                   
+            }
+
+            )
+        }
+        return totalPrice
+
+    }
+    
     render() {
         console.log(this.state);
-
+        
         return (
             <Row>
             <Card title="Shopping Cart" >
@@ -218,7 +235,8 @@ class ShoppingCart extends React.Component {
                     {this.getNumberofProductCard()}
                     
             </Card>
-            <div style={{float: 'right'}}><Button>Check Out</Button></div>
+            
+            <div style={{float: 'right'}}><p>Total Price:${this.getTotalPrice()} </p><Button>Check Out</Button></div>
             
             </Row>
         );
