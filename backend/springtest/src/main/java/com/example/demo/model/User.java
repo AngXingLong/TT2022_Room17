@@ -14,12 +14,12 @@ public class User {
     private Long id;
     private String username;
     private String password;
-    private String first_name;
-    private String last_name;
-    private String gender;
-    private String created_at;
     private boolean active;
     private String roles;
+    private String firstName;
+    private String lastName;
+    private int portalCode;
+    private String gender;
 
     @OneToMany(
             mappedBy = "user",
@@ -68,5 +68,45 @@ public class User {
 
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getPortalCode() {
+        return portalCode;
+    }
+
+    public void setPortalCode(int portalCode) {
+        this.portalCode = portalCode;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
     }
 }
