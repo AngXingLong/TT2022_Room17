@@ -16,6 +16,7 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+
     @PostMapping
     public void insertProduct(@RequestBody Product product) {
         productService.insert(product);

@@ -21,7 +21,6 @@ public class Orders {
     private String status;
     private String createdAt;
 
-
     @OneToMany(
             mappedBy = "orders",
             orphanRemoval = true,
